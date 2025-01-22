@@ -3,6 +3,7 @@
 #include <string>
 #include <string_view>
 #include <format>
+#include <cmath>
 
 void someFnc()
 {
@@ -157,5 +158,58 @@ int main()
     std::string_view str3{str2.substr(0, 5)};
 
     std::cout << str1 << " " << str2 << " " << str3 << std::endl;
+
+    /*
+
+    An operation is a mathematical process involving zero or more input values (called operandas) that produces a
+    new value (called an outpout value) he specific operation to be performed is denoted by a construct (typically a symbol or pair of symbols) called an operator.
+
+    The C++ standard uses the term value computation to mean the execution of operators in an expression to produce a value. The precedence and association rules
+    determine the order in which value computation happens.
+
+    The C++ standard (mostly) uses the term evaluation to refer to the evaluation of operands
+
+    The remainder operator (also commonly called the modulo operator or modulus operator)
+
+    Increment/Decrement operators, and side effects *IMPORTANT*
+
+    Prefix increment (pre-increment) = ++x	Increment x, then return x
+    Prefix decrement (pre-decrement) =  ––x	Decrement x, then return x
+    Postfix increment (post-increment) = x++	Copy x, then increment x, then return the copy
+    Postfix decrement (post-decrement) =	x––	Copy x, then decrement x, then return the copy
+
+    */
+
+    std::cout << 7.0 / 4 << '\n'; // this will return 1.75
+    std::cout << 7 / 4 << '\n';   // this will return 1
+
+    int x{5};
+    int y{++x}; // x is incremented 6, x evaluate to the value 6, and 6 is assigned to y
+
+    std::cout << x << " " << y << '\n'; // 6 6
+
+    int z{x++};
+
+    std::cout << x << " " << z << '\n'; // 7 6
+
+    int _x{5};
+    int _y{5};
+    std::cout << _x << ' ' << _y << '\n';
+    std::cout << ++_x << ' ' << --_y << '\n'; // prefix
+    std::cout << _x << ' ' << _y << '\n';
+    std::cout << _x++ << ' ' << _y-- << '\n'; // postfix
+    std::cout << _x << ' ' << _y << '\n';
+
+    int max{};
+
+    if (x > y)
+        max = x;
+    else
+        max = y;
+
+    // This can also be written as
+
+    max = ((x > y) ? x : y);
+
     return 0;
 }
