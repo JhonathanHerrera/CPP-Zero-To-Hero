@@ -38,6 +38,7 @@ public:
     }
     /*
 
+    - unique_ptr &&other means that other is an rvalue reference, meaning it cannot be a named variable but must be something that is being "moved" (temporary object)
     - Transfers ownership only if this is not the same object as other (this != &other avoids self-assignment)
     - Calls reset(other.release()):
         1) releases ownership of the current objecet (deletes the old pointer)
