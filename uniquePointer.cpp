@@ -25,6 +25,10 @@ public:
         2) sets other.m_ptr to nullptr, ensuring other no longer manages the resource
     -the moved-from object (other) becomes empty (nullptr)
 
+    Example:
+    std::unique_ptr<int> obj1(20);
+    std::unique_ptr<int> obj2 = std::move(obj1); -> the m_ptr within obj1 will be moved to obj2 and set as a nullptr
+
     */
 
     // Move assignment operator
