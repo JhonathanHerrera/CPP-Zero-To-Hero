@@ -47,6 +47,14 @@ preventing deletion
 - prefer std::unique_ptr when exclusive ownership is needed
 - std::make_shared is more efficient than new
 
+Problem with weak_ptr
+
+- Suppose we have two std::shared_ptrs that point to each other. This creates a cycle, so even when we think we're done with them,
+they never get deleted because their reference counts never reach zero
+- a owns b, and b owns a.
+- Their reference counts are stuck at 1 (each pointing to the other).
+- Memory leak! Neither object is ever destroyed
+
 */
 
 // Example 1
