@@ -11,7 +11,7 @@ std::atomic<bool> ready_seq_cst(false);
 std::atomic<int> orderCounter(0); // Used with acq_rel
 int food = 0;                     // Not atomic on purpose (to show effect of memory order)
 
-// 🚨 Unsafe - Relaxed version
+//  Unsafe - Relaxed version
 void cookWithRelaxed()
 {
     food = 10;                                            // Cook food
@@ -25,7 +25,7 @@ void serveWithRelaxed()
     std::cout << "[RELAXED] Served food: " << food << " (could be wrong)\n";
 }
 
-// ✅ Safe - Release/Acquire version
+//  Safe - Release/Acquire version
 void cookWithRelease()
 {
     food = 20;
@@ -39,7 +39,7 @@ void serveWithAcquire()
     std::cout << "[RELEASE/ACQUIRE] Served food: " << food << " (should be 20)\n";
 }
 
-// ✅ Safe - Seq_cst (strongest)
+//  Safe - Seq_cst (strongest)
 void cookWithSeqCst()
 {
     food = 30;
@@ -53,7 +53,7 @@ void serveWithSeqCst()
     std::cout << "[SEQ_CST] Served food: " << food << " (should be 30)\n";
 }
 
-// ✅ Safe - Atomic counter using acq_rel
+//  Safe - Atomic counter using acq_rel
 void placeOrders(int id)
 {
     for (int i = 0; i < 3; ++i)
@@ -66,7 +66,7 @@ void placeOrders(int id)
 
 int main()
 {
-    std::cout << "🧪 Testing different memory orders...\n";
+    std::cout << " Testing different memory orders...\n";
 
     // RELAXED (may give wrong result)
     std::thread t1(cookWithRelaxed);
@@ -87,12 +87,12 @@ int main()
     t6.join();
 
     // ACQ_REL counter
-    std::cout << "\n🧾 Simulating order placement using acq_rel...\n";
+    std::cout << "\n Simulating order placement using acq_rel...\n";
     std::thread t7(placeOrders, 1);
     std::thread t8(placeOrders, 2);
     t7.join();
     t8.join();
 
-    std::cout << "✅ Done testing memory orders.\n";
+    std::cout << " Done testing memory orders.\n";
     return 0;
 }
